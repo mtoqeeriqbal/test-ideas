@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS URL Map — scottmarsh.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0C0D10;
+      --surface: #13141A;
+      --surface2: #1C1E27;
+      --surface3: #252833;
+      --border: rgba(255, 255, 255, 0.07);
+      --border2: rgba(255, 255, 255, 0.12);
+
+      --l1-bg: #1A1030;
+      --l1-border: #6C3FC5;
+      --l1-text: #B899F8;
+      --l1-pill: #7C4DFF;
+      --l2-bg: #0D1F18;
+      --l2-border: #1A7A52;
+      --l2-text: #3DD68C;
+      --l2-pill: #00C16A;
+      --l3-bg: #1F1500;
+      --l3-border: #8A5A00;
+      --l3-text: #F5B942;
+      --l3-pill: #F59E0B;
+      --l4-bg: #1A0D10;
+      --l4-border: #8A2535;
+      --l4-text: #F87191;
+      --l4-pill: #F43F5E;
+
+      --sec-ufw: #3B82F6;
+      --sec-cr: #10B981;
+      --sec-ci: #8B5CF6;
+      --sec-tb: #F59E0B;
+      --sec-cb: #EC4899;
+      --sec-ir: #06B6D4;
+      --sec-rr: #EF4444;
+      --sec-bk: #6B7280;
+
+      --text: #E8EAF0;
+      --muted: #6B7280;
+      --muted2: #9CA3AF;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12, 13, 16, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border2);
+      padding: 0 32px;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6C3FC5, #F43F5E);
+      box-shadow: 0 0 12px rgba(108, 63, 197, 0.8);
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .hstat {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border2);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .hstat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .layout {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 32px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── CONTROLS ── */
+    .controls {
+      margin-bottom: 28px;
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 15px;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 13px 16px 13px 44px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input::placeholder {
+      color: var(--muted);
+    }
+
+    .search-input:focus {
+      border-color: rgba(108, 63, 197, 0.6);
+      box-shadow: 0 0 0 3px rgba(108, 63, 197, 0.12);
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .filter-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      align-self: center;
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+
+    .pill-btn {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border2);
+      background: var(--surface2);
+      color: var(--muted2);
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--border2);
+      color: var(--text);
+      background: var(--surface3);
+    }
+
+    .pill-btn.active {
+      background: rgba(108, 63, 197, 0.2);
+      border-color: rgba(108, 63, 197, 0.5);
+      color: #B899F8;
+    }
+
+    .level-filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .lvl-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.18s;
+      border: 1px solid transparent;
+      opacity: 0.5;
+    }
+
+    .lvl-btn:hover {
+      opacity: 0.8;
+    }
+
+    .lvl-btn.active {
+      opacity: 1;
+    }
+
+    .lvl-btn.l1 {
+      background: var(--l1-bg);
+      border-color: var(--l1-border);
+      color: var(--l1-text);
+    }
+
+    .lvl-btn.l2 {
+      background: var(--l2-bg);
+      border-color: var(--l2-border);
+      color: var(--l2-text);
+    }
+
+    .lvl-btn.l3 {
+      background: var(--l3-bg);
+      border-color: var(--l3-border);
+      color: var(--l3-text);
+    }
+
+    .lvl-btn.l4 {
+      background: var(--l4-bg);
+      border-color: var(--l4-border);
+      color: var(--l4-text);
+    }
+
+    /* ── RESULT COUNT ── */
+    .result-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .result-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .result-count strong {
+      color: var(--text);
+    }
+
+    /* ── TABLE CONTAINER ── */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: var(--surface2);
+      position: sticky;
+      top: 64px;
+      z-index: 10;
+    }
+
+    th {
+      font-family: var(--font-head);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border2);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s;
+    }
+
+    th:hover {
+      color: var(--text);
+    }
+
+    th .sort-arrow {
+      margin-left: 4px;
+      opacity: 0.4;
+    }
+
+    th.sorted .sort-arrow {
+      opacity: 1;
+      color: #B899F8;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+      animation: rowIn 0.3s ease both;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: var(--surface2);
+    }
+
+    tbody tr.hidden {
+      display: none;
+    }
+
+    @keyframes rowIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    td {
+      padding: 11px 20px;
+      vertical-align: middle;
+    }
+
+    /* Level pill */
+    .lvl-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .lvl-pill.l1 {
+      background: var(--l1-bg);
+      border-color: var(--l1-border);
+      color: var(--l1-text);
+    }
+
+    .lvl-pill.l2 {
+      background: var(--l2-bg);
+      border-color: var(--l2-border);
+      color: var(--l2-text);
+    }
+
+    .lvl-pill.l3 {
+      background: var(--l3-bg);
+      border-color: var(--l3-border);
+      color: var(--l3-text);
+    }
+
+    .lvl-pill.l4 {
+      background: var(--l4-bg);
+      border-color: var(--l4-border);
+      color: var(--l4-text);
+    }
+
+    .lvl-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .l1 .lvl-dot {
+      background: var(--l1-pill);
+    }
+
+    .l2 .lvl-dot {
+      background: var(--l2-pill);
+    }
+
+    .l3 .lvl-dot {
+      background: var(--l3-pill);
+    }
+
+    .l4 .lvl-dot {
+      background: var(--l4-pill);
+    }
+
+    /* Section tag */
+    .sec-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 5px;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+
+    /* URL cell */
+    .url-cell {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.4;
+    }
+
+    .url-base {
+      color: var(--muted);
+    }
+
+    .url-section {
+      color: var(--muted2);
+    }
+
+    .url-leaf {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .url-sep {
+      color: var(--muted);
+      opacity: 0.4;
+    }
+
+    /* Collection type */
+    .coll-tag {
+      font-size: 11px;
+      color: var(--muted2);
+      white-space: nowrap;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+      display: none;
+    }
+
+    .empty-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      opacity: 0.3;
+    }
+
+    .empty-text {
+      font-size: 14px;
+    }
+
+    /* ── LEGEND ── */
+    .legend {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--muted2);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--surface3);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-dot"></div>
+        scottmarsh.com — CMS URL Map
+      </div>
+      <div class="header-stats" id="headerStats"></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <div class="controls">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input class="search-input" type="text" placeholder="Search any URL path or slug…" id="searchBox"
+          oninput="applyFilters()">
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">Section</span>
+        <button class="pill-btn active" onclick="setSection('all',this)">All sections</button>
+        <button class="pill-btn" onclick="setSection('user-friendly-websites',this)">User-Friendly Websites</button>
+        <button class="pill-btn" onclick="setSection('consumer-recommendations',this)">Consumer Recs</button>
+        <button class="pill-btn" onclick="setSection('collective-intelligence',this)">Collective Intel</button>
+        <button class="pill-btn" onclick="setSection('teen-business',this)">Teen Business</button>
+        <button class="pill-btn" onclick="setSection('college-business',this)">College Business</button>
+        <button class="pill-btn" onclick="setSection('immigrant',this)">Immigrant Resources</button>
+        <button class="pill-btn" onclick="setSection('recession',this)">Recession Research</button>
+        <button class="pill-btn" onclick="setSection('books',this)">Books</button>
+      </div>
+
+      <div class="filter-row">
+        <span class="filter-label">Level</span>
+        <div class="level-filters">
+          <button class="lvl-btn l1 active" onclick="toggleLevel(1,this)">L1 — Section Hub</button>
+          <button class="lvl-btn l2 active" onclick="toggleLevel(2,this)">L2 — Category</button>
+          <button class="lvl-btn l3 active" onclick="toggleLevel(3,this)">L3 — Sub-category</button>
+          <button class="lvl-btn l4 active" onclick="toggleLevel(4,this)">L4 — Article / Leaf</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-meta">
+      <div class="result-count" id="resultCount">Showing <strong>0</strong> URLs</div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="urlTable">
+        <thead>
+          <tr>
+            <th onclick="sortBy('level')" id="th-level">Level <span class="sort-arrow">↕</span></th>
+            <th onclick="sortBy('section')" id="th-section">Section <span class="sort-arrow">↕</span></th>
+            <th>URL Path</th>
+            <th onclick="sortBy('collection')" id="th-collection">Collection <span class="sort-arrow">↕</span></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="emptyState">
+        <div class="empty-icon">◎</div>
+        <div class="empty-text">No URLs match your filters</div>
+      </div>
+    </div>
+
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <script>
+    const SECTION_META = {
+      'books': { label: 'Books', color: '#6B7280', bg: 'rgba(107,114,128,0.15)', border: 'rgba(107,114,128,0.3)' },
+      'user-friendly-websites': { label: 'User-Friendly Websites', color: '#3B82F6', bg: 'rgba(59,130,246,0.12)', border: 'rgba(59,130,246,0.3)' },
+      'consumer-recommendations': { label: 'Consumer Recs', color: '#10B981', bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.3)' },
+      'collective-intelligence': { label: 'Collective Intel', color: '#8B5CF6', bg: 'rgba(139,92,246,0.12)', border: 'rgba(139,92,246,0.3)' },
+      'teen-business': { label: 'Teen Business', color: '#F59E0B', bg: 'rgba(245,158,11,0.12)', border: 'rgba(245,158,11,0.3)' },
+      'college-business': { label: 'College Business', color: '#EC4899', bg: 'rgba(236,72,153,0.12)', border: 'rgba(236,72,153,0.3)' },
+      'immigrant': { label: 'Immigrant Resources', color: '#06B6D4', bg: 'rgba(6,182,212,0.12)', border: 'rgba(6,182,212,0.3)' },
+      'recession': { label: 'Recession Research', color: '#EF4444', bg: 'rgba(239,68,68,0.12)', border: 'rgba(239,68,68,0.3)' },
+    };
+
+    const COLLECTION_LABEL = { 1: 'Section Hub', 2: 'Category', 3: 'Sub-category', 4: 'Article / Leaf' };
+
+    const URLS = [
+      ["/information-sources/books/", "books", 1],
+      ["/information-sources/user-friendly-websites/", "user-friendly-websites", 1],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/credit/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/education/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/estate-planning/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/insurance/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/tax/", "user-friendly-websites", 2],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/credit-reports/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/fraud/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/identity-theft/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/online-data-safety/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/opting-out/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/central-intelligence-awareness/personal-data-management/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/banks-and-credit-unions/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/business-debt/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/consumer-credit/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/credit-cards/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/credit-laws/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/credit-reports/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/debt-calculators/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/interest-rates/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/loans-to-avoid/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/credit/mortgage/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/education/funding-education/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/education/picking-a-college/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/education/value-of-higher-education/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/education/test-preparation-services/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/estate-planning/asset-protection-strategies/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/estate-planning/calculators/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/estate-planning/estate-planning-documents/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/estate-planning/gift-and-estate-taxation/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/estate-planning/important-considerations/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/estate-planning/settling-an-estate/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/auto-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/business-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/disability-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/general-insurance-information/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/health-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/homeowners-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/life-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/renters-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/specialty-insurance/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/types-of-insurance-to-avoid/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/insurance/umbrella-policies/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/auctions/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/automobile/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/banking/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/budget/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/children/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/computer/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/event-planning/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/food/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/frugality/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/home/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/online-purchasing/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/product-review/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/travel-recreation/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/wealth-of-great-health/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/million-dolalr-choices-consumer/work/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/bonds/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/business-entity-choice/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/calculators/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/investment-advice/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/investor-education/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/lifes-stages/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/mutualindex-funds/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/poorriskfraudulent-investments/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/prosperous-careers/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/real-estate-investing/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/retirement-accounts/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/retirement-planning/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/savings/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/small-business-resources/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/point-of-choice-retirement/stock-investments/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/audit/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/capital-gains-taxation/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/federal-income-taxation/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/fica-tax/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/low-cost-tax-help/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/state-tax-resources/", "user-friendly-websites", 3],
+      ["/information-sources/user-friendly-websites/tax/tax-calculators/", "user-friendly-websites", 3],
+      ["/information-sources/consumer-recommendations/", "consumer-recommendations", 1],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/food-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/transportation-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/office-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/", "consumer-recommendations", 2],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/athletic-apparel/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/clothing-care-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/jewelry-care-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/mens-clothing-care-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/shoes-clothing-care-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/watches-clothing-care-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/womens-clothing-clothing-care-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/apparel-consumer-recommendations/winter-clothing/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-hardware/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-hardware/accessories/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-hardware/desktop-pcs/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-hardware/entertainment-downloads/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-hardware/handheld-pcs/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-hardware/laptop-notebook-computers/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/finance-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/online-games/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/genealogy-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/home-design-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/internet-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/medical-information-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/photo-editing-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/publishing-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/data-security-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/computer-consumer-recommendations/computer-software/tax-preparation-software/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/exercise-consumer-recommendations/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/exercise-consumer-recommendations/exercise-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/exercise-consumer-recommendations/gym-memberships/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/camping-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/sporting-accessories-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/fishing-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/swimming-pools/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/water-sports-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/exercise-consumer-recommendations/sport-outdoor-consumer-recommendations/winter-sports-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/investing/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/business/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/credit/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/business/best-businesses/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/business/small-business/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/credit/credit-cards/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/finance-consumer-recommendations/credit/credit-report/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/food-consumer-recommendations/fast-food/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/food-consumer-recommendations/food-planning/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/food-consumer-recommendations/food-storage/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-electronics/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/accessories/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/bathroom-accessories-and-appliances/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/carpet-furnishings/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/cleaning-supplies-appliances/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/decorations/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/door/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/heating-air-conditioning-filtration/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/kitchen/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/laundry/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/home-maintenance-remodeling/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/outdoor-appliances/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-decor-and-appliances/home-protection/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-electronics/camera-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-electronics/entertainment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-electronics/gps/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-electronics/pda/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/home-consumer-recommendations/home-electronics/phones-communications/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/transportation-consumer-recommendations/fuel/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/transportation-consumer-recommendations/general-automotive/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/transportation-consumer-recommendations/insurance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/transportation-consumer-recommendations/auto-maintenance/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/transportation-consumer-recommendations/auto-safety/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/lawn-garden/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/cutting-tools/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/outdoor-cleaning-equipment/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/paint-and-supplies/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/tool-storage/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/woodworking-tools/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/lawn-garden-tools-consumer-recommendations/tools/work-wear/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/office-consumer-recommendations/office-accessories/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/office-consumer-recommendations/office-appliances/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/office-consumer-recommendations/office-furnishings/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/books/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/dating/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/funeral/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/personal-hygiene/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/perfume-cologne/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/protection-from-elements/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/personal-consumer-recommendations/toys/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/charity/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/appraisal/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/budgeting/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/estate-planning/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/government-and-law/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/travel/", "consumer-recommendations", 3],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/appraisal/car-and-house-appraisals/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/appraisal/coins-and-collectibles/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/budgeting/budgeting-tips/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/budgeting/budgeting-utilities/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/estate-planning/estate-documents/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/estate-planning/estate-sales/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/government-and-law/legal-advice/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/government-and-law/tax-consumer/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/pet-care-advice/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/animal-cages/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/dog-house/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/pet-food/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/litterbox/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/pet-care/pet-training/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/travel/travel-discounts/", "consumer-recommendations", 4],
+      ["/information-sources/consumer-recommendations/miscellaneous-other-consumer-recommendations/travel/travel-websites/", "consumer-recommendations", 4],
+      ["/information-sources/collective-intelligence-guides/", "collective-intelligence", 1],
+      ["/information-sources/collective-intelligence-guides/career-intelligence-guides/", "collective-intelligence", 2],
+      ["/information-sources/collective-intelligence-guides/business-intelligence-guides/", "collective-intelligence", 2],
+      ["/information-sources/collective-intelligence-guides/central-intelligence-awareness/", "collective-intelligence", 2],
+      ["/information-sources/collective-intelligence-guides/business-intelligence-guides/download-microsoft-accounting-express/", "collective-intelligence", 3],
+      ["/information-sources/collective-intelligence-guides/business-intelligence-guides/business-entity-choice/", "collective-intelligence", 3],
+      ["/information-sources/collective-intelligence-guides/business-intelligence-guides/small-business-resources/", "collective-intelligence", 3],
+      ["/information-sources/collective-intelligence-guides/central-intelligence-awareness/credit-reports/", "collective-intelligence", 3],
+      ["/information-sources/collective-intelligence-guides/central-intelligence-awareness/identity-theft/", "collective-intelligence", 3],
+      ["/information-sources/collective-intelligence-guides/central-intelligence-awareness/online-data-safety/", "collective-intelligence", 3],
+      ["/information-sources/creatively-ingenious-teen-business/", "teen-business", 1],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/", "teen-business", 2],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/", "teen-business", 2],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/childcare-domestic/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/construction-custodial-maintenance/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/fitness-recreation-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/education-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/food-hospitality-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/government-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/landscaping-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/legal-paralegal-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/management-office-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/manufacturing-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/medical-health-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/miscellaneous-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/retail-wholesale-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/sales-business-devlopment-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/technology-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/childcare-domestic/babysitting/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/childcare-domestic/dog-sitting-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/childcare-domestic/nannying/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/construction-custodial-maintenance/construction-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/construction-custodial-maintenance/custodial-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/construction-custodial-maintenance/snow-removal-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/fitness-recreation-opportunities/coaching-sports-administration-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/fitness-recreation-opportunities/fitness-instruction-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/employment-opportunities/fitness-recreation-opportunities/lifeguard-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/art-media-design-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/foodhospitality-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/auto-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/childcare-domestic-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/construction-custodial-maintenance-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/education-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/fitness-recreation-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/manufacturing-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/medicalhealth-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/miscellaneous-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/retail-wholesale-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/special-events-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/technology-opportunities/", "teen-business", 3],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/art-media-design-opportunities/industrial-design-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/art-media-design-opportunities/photographyart-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/art-media-design-opportunities/t-shirt-design-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/auto-opportunities/car-detailing-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/auto-opportunities/car-repairmaintenance-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/auto-opportunities/car-sales-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/auto-opportunities/parking-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/childcare-domestic-opportunities/babysitting-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/childcare-domestic-opportunities/nannying-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/childcare-domestic-opportunities/pet-care-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/construction-custodial-maintenance-opportunities/construction-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/construction-custodial-maintenance-opportunities/repair-maintenance-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/education-opportunities/teaching-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/education-opportunities/tutoring-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/fitness-recreation-opportunities/coaching-sports-administration-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/fitness-recreation-opportunities/dance-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/fitness-recreation-opportunities/day-camps-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/fitness-recreation-opportunities/fitness-instructing-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/curb-painting-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/flag-service-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/landscaping-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/roof-cleaning-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/snow-removal-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-teen-business/entrepreneurial-opportunities/landscaping-outdoor-maintenance-opportunities/window-cleaning-opportunities/", "teen-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/", "college-business", 1],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/", "college-business", 2],
+      ["/information-sources/creatively-ingenious-college-business/entrepreneurial-opportunities/", "college-business", 2],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/art-media-design/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/childcare-domestic-assistant/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/education/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/customer-service/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/landscaping/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/fitnessrecreation/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/food-hospitality/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/sales-business-development/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/legal-paralegal/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/management-office/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/medical-health/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/miscellaneous/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/retail-wholesale/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/technology/", "college-business", 3],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/art-media-design/photography/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/art-media-design/television/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/childcare-domestic-assistant/child-care/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/childcare-domestic-assistant/domestic-assistant/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/construction/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/custodial/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/light-installation/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/mechanic/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/painting/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/pest-control/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/construction-custodial-maintenance/repair-maintenance/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/education/teaching/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/education/research/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/education/tutoring/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/fitnessrecreation/fitness-instruction/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/fitnessrecreation/cheerleading-choreographer/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/fitnessrecreation/basketball-coaching/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/fitnessrecreation/outdoor-recreation/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/food-hospitality/food-service/", "college-business", 4],
+      ["/information-sources/creatively-ingenious-college-business/employment-opportunities-2/food-hospitality/driver-guide/", "college-business", 4],
+      ["/information-sources/immigrant-resources-database/", "immigrant", 1],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/", "immigrant", 2],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/", "immigrant", 2],
+      ["/information-sources/immigrant-resources-database/20-fundamental-questions/", "immigrant", 2],
+      ["/information-sources/immigrant-resources-database/government-other-resources/", "immigrant", 2],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/argentina/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/brazil/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/costa-rica/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/deaf-asl/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/dominican-republic/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/honduras/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/mexico/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/samoa/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/south-korea/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/tanzania/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/success-profiles-and-advice/venezuela/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/brazil-2/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/china/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/dominican-republic/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/guatemala/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/mexico/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/mongolia/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/philippines/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/poland/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/language-conversion-glossary/spain/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/20-fundamental-questions/brazil/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/20-fundamental-questions/spain/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/20-fundamental-questions/mexico/", "immigrant", 3],
+      ["/information-sources/immigrant-resources-database/government-other-resources/ghana/", "immigrant", 3],
+      ["/information-sources/million-dollar-recession-research/", "recession", 1],
+      ["/information-sources/million-dollar-recession-research/comprehending-recessions/", "recession", 2],
+      ["/information-sources/million-dollar-recession-research/safeguarding-money/", "recession", 2],
+      ["/information-sources/million-dollar-recession-research/investing-during-recession/", "recession", 2],
+      ["/information-sources/million-dollar-recession-research/lessons-recession/", "recession", 2],
+    ];
+
+    // Build header stats
+    const statsEl = document.getElementById('headerStats');
+    const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
+    URLS.forEach(u => counts[u[2]]++);
+    const statDefs = [
+      { label: 'Total', val: URLS.length, color: '#9CA3AF' },
+      { label: 'L1 Hubs', val: counts[1], color: '#B899F8' },
+      { label: 'L2 Categories', val: counts[2], color: '#3DD68C' },
+      { label: 'L3 Sub-cats', val: counts[3], color: '#F5B942' },
+      { label: 'L4 Leaves', val: counts[4], color: '#F87191' },
+    ];
+    statDefs.forEach(s => {
+      statsEl.innerHTML += `<div class="hstat"><span class="hstat-dot" style="background:${s.color}"></span>${s.label} <strong>${s.val}</strong></div>`;
+    });
+
+    // Build legend
+    const legendEl = document.getElementById('legend');
+    Object.entries(SECTION_META).forEach(([k, v]) => {
+      legendEl.innerHTML += `<div class="legend-item"><span class="legend-dot" style="background:${v.color}"></span>${v.label}</div>`;
+    });
+
+    // Build table
+    function formatURL(url) {
+      const clean = url.replace('/information-sources/', '');
+      const parts = clean.replace(/\/$/, '').split('/');
+      if (parts.length === 1) {
+        return `<span class="url-base">/information-sources/</span><span class="url-leaf">${parts[0]}/</span>`;
+      }
+      const leaf = parts[parts.length - 1];
+      const mid = parts.slice(0, -1).join('<span class="url-sep">/</span>');
+      return `<span class="url-base">/information-sources/</span><span class="url-section">${mid}</span><span class="url-sep">/</span><span class="url-leaf">${leaf}/</span>`;
+    }
+
+    const tbody = document.getElementById('tbody');
+    URLS.forEach(([url, section, level], i) => {
+      const sm = SECTION_META[section] || { label: section, color: '#666', bg: 'rgba(102,102,102,0.1)', border: 'rgba(102,102,102,0.3)' };
+      const tr = document.createElement('tr');
+      tr.dataset.section = section;
+      tr.dataset.level = level;
+      tr.dataset.url = url.toLowerCase();
+      tr.style.animationDelay = `${Math.min(i * 8, 300)}ms`;
+      tr.innerHTML = `
+    <td><span class="lvl-pill l${level}"><span class="lvl-dot"></span>L${level}</span></td>
+    <td><span class="sec-tag" style="background:${sm.bg};border-color:${sm.border};color:${sm.color}">${sm.label}</span></td>
+    <td class="url-cell">${formatURL(url)}</td>
+    <td class="coll-tag">${COLLECTION_LABEL[level] || ''}</td>
+  `;
+      tbody.appendChild(tr);
+    });
+
+    // Filters
+    let activeSection = 'all';
+    let activeLevels = new Set([1, 2, 3, 4]);
+
+    function setSection(s, btn) {
+      activeSection = s;
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function toggleLevel(l, btn) {
+      if (activeLevels.has(l)) {
+        if (activeLevels.size === 1) return;
+        activeLevels.delete(l);
+        btn.classList.remove('active');
+      } else {
+        activeLevels.add(l);
+        btn.classList.add('active');
+      }
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('searchBox').value.toLowerCase().trim();
+      let visible = 0;
+      document.querySelectorAll('#tbody tr').forEach(tr => {
+        const matchSec = activeSection === 'all' || tr.dataset.section === activeSection;
+        const matchLvl = activeLevels.has(parseInt(tr.dataset.level));
+        const matchQ = !q || tr.dataset.url.includes(q);
+        const show = matchSec && matchLvl && matchQ;
+        tr.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('resultCount').innerHTML = `Showing <strong>${visible}</strong> of ${URLS.length} URLs`;
+      document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    applyFilters();
+
+    // Sort
+    let sortCol = null, sortDir = 1;
+    function sortBy(col) {
+      if (sortCol === col) sortDir *= -1;
+      else { sortCol = col; sortDir = 1; }
+      document.querySelectorAll('th').forEach(th => th.classList.remove('sorted'));
+      document.getElementById('th-' + col)?.classList.add('sorted');
+
+      const rows = [...tbody.querySelectorAll('tr')];
+      rows.sort((a, b) => {
+        let av = col === 'level' ? parseInt(a.dataset.level) : a.dataset[col] || '';
+        let bv = col === 'level' ? parseInt(b.dataset.level) : b.dataset[col] || '';
+        return av < bv ? -sortDir : av > bv ? sortDir : 0;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    }
+  </script>
+</body>
+
+</html>
