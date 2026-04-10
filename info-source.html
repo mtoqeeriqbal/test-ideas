@@ -1029,8 +1029,10 @@
         return `<span class="url-base">/information-sources/</span><span class="url-leaf">${parts[0]}/</span>`;
       }
       const leaf = parts[parts.length - 1];
-      const mid = parts.slice(0, -1).join('<span class="url-sep">/</span>');
-      return `<span class="url-base">/information-sources/</span><span class="url-section">${mid}</span><span class="url-sep">/</span><span class="url-leaf">${leaf}/</span>`;
+      const midParts = parts.slice(0, -1);
+      const sep = `<span class="url-sep">/</span>`;
+      const mid = midParts.join(sep);
+      return `<span class="url-base">/information-sources/</span><span class="url-section">${mid}${sep}</span><span class="url-leaf">${leaf}/</span>`;
     }
 
     const tbody = document.getElementById('tbody');
