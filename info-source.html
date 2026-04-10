@@ -1030,9 +1030,9 @@
       }
       const leaf = parts[parts.length - 1];
       const midParts = parts.slice(0, -1);
-      const sep = `<span class="url-sep">/</span>`;
-      const mid = midParts.join(sep);
-      return `<span class="url-base">/information-sources/</span><span class="url-section">${mid}${sep}</span><span class="url-leaf">${leaf}/</span>`;
+      // Build each mid segment with its trailing slash baked in as visible text
+      const midHtml = midParts.map(p => `<span class="url-section">${p}/</span>`).join('');
+      return `<span class="url-base">/information-sources/</span>${midHtml}<span class="url-leaf">${leaf}/</span>`;
     }
 
     const tbody = document.getElementById('tbody');
