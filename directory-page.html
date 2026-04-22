@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+        .scaffold-line {
+            position: fixed;
+            background-color: #c6c6c6;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        .v-line { width: 1px; height: 100vh; top: 0; }
+        .h-line { height: 1px; width: 100vw; left: 0; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface": "#1a1c1c",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "background": "#f9f9f9",
+                        "outline": "#777777",
+                        "outline-variant": "#c6c6c6",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#747575",
+                        "surface": "#f9f9f9",
+                        "inverse-primary": "#c6c6c6",
+                        "surface-container": "#eeeeee",
+                        "surface-dim": "#dadada",
+                        "on-error-container": "#410002",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary-container": "#d5d4d4",
+                        "on-primary": "#e2e2e2",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-container": "#ffffff",
+                        "on-primary-fixed": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "on-tertiary": "#e3e2e2",
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#e3e2e2",
+                        "secondary-fixed-dim": "#acabab",
+                        "secondary-fixed": "#c7c6c6",
+                        "tertiary-fixed-dim": "#464747",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#5e5e5e",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#474747",
+                        "on-secondary-fixed-variant": "#3b3b3c",
+                        "primary": "#000000",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ffffff",
+                        "on-tertiary-fixed": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "surface-tint": "#5e5e5e",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#3a3c3c",
+                        "primary-container": "#3b3b3b",
+                        "on-secondary-container": "#1b1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-surface-variant": "#474747",
+                        "tertiary-fixed": "#5d5e5f",
+                        "on-background": "#1a1c1c"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Scaffold Lines for Blueprint Aesthetic -->
+<div class="scaffold-line v-line left-[8%]"></div>
+<div class="scaffold-line v-line left-[25%]"></div>
+<div class="scaffold-line v-line right-[8%]"></div>
+<div class="scaffold-line h-line top-16"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f9f9f9]/80 backdrop-blur-md border-b border-gray-200">
+<div class="flex justify-between items-center px-8 h-16 max-w-[1440px] mx-auto font-['Inter'] antialiased text-sm tracking-tight">
+<div class="text-xl font-bold tracking-tighter text-black">CHAMBER</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-gray-500 hover:text-black transition-colors" href="#">Home</a>
+<a class="text-gray-500 hover:text-black transition-colors" href="#">About</a>
+<a class="text-black font-semibold border-b border-black pb-1" href="#">Directory</a>
+<a class="text-gray-500 hover:text-black transition-colors" href="#">Events</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 hover:bg-gray-100 rounded-sm transition-all">search</button>
+<button class="bg-black text-on-primary px-5 py-2 text-xs font-semibold uppercase tracking-widest rounded-lg">Join</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-8 max-w-[1440px] mx-auto">
+<!-- Hero / Search Section -->
+<section class="mb-12">
+<div class="flex flex-col gap-2 mb-8">
+<span class="text-[0.6875rem] uppercase tracking-[0.1rem] text-outline font-bold">Member Resource</span>
+<h1 class="text-[3.5rem] font-extrabold tracking-tighter leading-none text-on-surface">Directory.</h1>
+</div>
+<div class="relative max-w-2xl group">
+<input class="w-full bg-surface-container-lowest border border-outline-variant px-6 py-4 rounded-lg focus:outline-none focus:border-primary transition-all text-body-md placeholder:text-outline/50" placeholder="Search businesses, services, or members..." type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">search</span>
+</div>
+</div>
+</section>
+<div class="flex flex-col md:flex-row gap-12">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-24 space-y-10">
+<div>
+<h3 class="text-[0.6875rem] uppercase tracking-[0.15rem] font-bold text-on-surface mb-6 border-b border-outline-variant/30 pb-2">Industry</h3>
+<ul class="space-y-3">
+<li class="flex items-center justify-between group cursor-pointer">
+<span class="text-sm font-semibold text-primary underline underline-offset-4">All Businesses</span>
+<span class="text-[10px] text-outline">124</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="text-sm">Retail &amp; Commerce</span>
+<span class="text-[10px] text-outline/50">42</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="text-sm">Hospitality</span>
+<span class="text-[10px] text-outline/50">18</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="text-sm">Professional Services</span>
+<span class="text-[10px] text-outline/50">31</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="text-sm">Technology</span>
+<span class="text-[10px] text-outline/50">12</span>
+</li>
+<li class="flex items-center justify-between group cursor-pointer text-on-surface-variant hover:text-primary transition-colors">
+<span class="text-sm">Manufacturing</span>
+<span class="text-[10px] text-outline/50">21</span>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="text-[0.6875rem] uppercase tracking-[0.15rem] font-bold text-on-surface mb-6 border-b border-outline-variant/30 pb-2">Membership</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant rounded-sm group-hover:border-primary transition-colors"></div>
+<span class="text-sm text-on-surface-variant">Premier Partners</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant rounded-sm group-hover:border-primary transition-colors"></div>
+<span class="text-sm text-on-surface-variant">Corporate Members</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant rounded-sm group-hover:border-primary transition-colors"></div>
+<span class="text-sm text-on-surface-variant">Small Business</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Grid -->
+<section class="flex-grow">
+<div class="flex justify-between items-end mb-8">
+<p class="text-[11px] uppercase tracking-wider text-outline">Showing 124 Results</p>
+<div class="flex gap-4">
+<button class="p-2 border border-outline-variant text-on-surface hover:bg-surface-container transition-colors rounded-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
+</button>
+<button class="p-2 border border-outline-variant text-outline hover:bg-surface-container transition-colors rounded-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">list</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant/20 border border-outline-variant/20 rounded-lg overflow-hidden">
+<!-- Business Card 1 -->
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-outline">business</span>
+</div>
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1 block">Retail</span>
+<h4 class="text-lg font-bold tracking-tight text-on-surface group-hover:underline underline-offset-4">Aurora Fine Goods</h4>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Curated sustainable home decor and lifestyle essentials for the modern dwelling.</p>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">Member since 2018</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<!-- Business Card 2 -->
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-outline">restaurant</span>
+</div>
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1 block">Hospitality</span>
+<h4 class="text-lg font-bold tracking-tight text-on-surface group-hover:underline underline-offset-4">The Glass Bistro</h4>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Locally sourced seasonal cuisine served in a minimal architectural setting.</p>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">Member since 2021</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<!-- Business Card 3 -->
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-outline">architecture</span>
+</div>
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1 block">Services</span>
+<h4 class="text-lg font-bold tracking-tight text-on-surface group-hover:underline underline-offset-4">Studio Monolith</h4>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Full-service architectural firm specializing in civic and industrial restoration.</p>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">Member since 2015</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<!-- Business Card 4 -->
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-outline">account_balance</span>
+</div>
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1 block">Professional</span>
+<h4 class="text-lg font-bold tracking-tight text-on-surface group-hover:underline underline-offset-4">Veritas Capital</h4>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Transparent financial advisory and investment strategies for local enterprises.</p>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">Member since 2012</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<!-- Business Card 5 -->
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-outline">precision_manufacturing</span>
+</div>
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1 block">Manufacturing</span>
+<h4 class="text-lg font-bold tracking-tight text-on-surface group-hover:underline underline-offset-4">Foundry West</h4>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Precision metal fabrication and industrial parts supply for heavy industry.</p>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">Member since 2019</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<!-- Business Card 6 -->
+<div class="bg-surface-container-lowest p-8 flex flex-col gap-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-outline">devices</span>
+</div>
+<div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold mb-1 block">Technology</span>
+<h4 class="text-lg font-bold tracking-tight text-on-surface group-hover:underline underline-offset-4">Cloud Logic</h4>
+<p class="text-sm text-on-surface-variant mt-2 line-clamp-2">Managed IT services and cybersecurity solutions for growing businesses.</p>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="text-[10px] font-bold text-on-surface-variant">Member since 2023</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex items-center justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-black text-white font-bold text-xs rounded-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-sm text-xs">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-sm text-xs">3</button>
+<span class="px-2 text-outline">...</span>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-sm text-xs">21</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-[#eeeeee] border-t border-gray-300">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full max-w-[1440px] mx-auto font-['Inter'] text-[11px] uppercase tracking-[0.05rem]">
+<div class="text-black opacity-80">© 2024 Chamber of Commerce. All rights reserved.</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-gray-600 hover:text-black transition-opacity underline" href="#">Privacy Policy</a>
+<a class="text-gray-600 hover:text-black transition-opacity" href="#">Terms of Service</a>
+<a class="text-gray-600 hover:text-black transition-opacity" href="#">Contact Us</a>
+<a class="text-gray-600 hover:text-black transition-opacity" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-container": "#ffffff",
+                        "secondary-fixed-dim": "#acabab",
+                        "on-secondary-fixed-variant": "#3b3b3c",
+                        "surface-tint": "#5e5e5e",
+                        "surface": "#f9f9f9",
+                        "on-primary-fixed": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "outline-variant": "#c6c6c6",
+                        "on-primary": "#e2e2e2",
+                        "tertiary": "#3a3c3c",
+                        "surface-container": "#eeeeee",
+                        "surface-dim": "#dadada",
+                        "surface-bright": "#f9f9f9",
+                        "on-error-container": "#410002",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary-container": "#ffffff",
+                        "secondary-fixed": "#c7c6c6",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#e2e2e2",
+                        "tertiary-fixed": "#5d5e5f",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5e5e5e",
+                        "primary-fixed-dim": "#474747",
+                        "on-surface-variant": "#474747",
+                        "tertiary-fixed-dim": "#464747",
+                        "outline": "#777777",
+                        "primary-fixed": "#5e5e5e",
+                        "primary": "#000000",
+                        "inverse-surface": "#2f3131",
+                        "on-tertiary-fixed-variant": "#e3e2e2",
+                        "on-tertiary-fixed": "#ffffff",
+                        "secondary-container": "#d5d4d4",
+                        "on-tertiary": "#e3e2e2",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-container": "#747575",
+                        "inverse-on-surface": "#f1f1f1",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-primary": "#c6c6c6",
+                        "primary-container": "#3b3b3b",
+                        "on-secondary-container": "#1b1c1c"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .scaffold-line {
+            position: absolute;
+            background-color: #c6c6c6;
+            opacity: 0.1;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-50/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-neutral-200/40 dark:border-neutral-800/40">
+<div class="flex justify-between items-center px-8 h-20 max-w-screen-2xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-neutral-900 dark:text-neutral-50 font-headline uppercase">
+                Chamber Directory
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-black dark:text-white border-b-2 border-black dark:border-white pb-1 font-semibold transition-colors" href="#">Directory</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors" href="#">Events</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors" href="#">Membership</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 text-sm font-medium hover:opacity-80 transition-opacity text-neutral-500 dark:text-neutral-400">Login</button>
+<button class="px-6 py-2.5 bg-primary text-on-primary text-sm font-bold active:scale-[0.98] transition-transform rounded">Join Now</button>
+</div>
+</div>
+</nav>
+<main class="relative pt-20 overflow-hidden">
+<!-- Structural Scaffolding Lines -->
+<div class="scaffold-line w-px h-full left-8 top-0"></div>
+<div class="scaffold-line w-px h-full right-8 top-0"></div>
+<div class="scaffold-line h-px w-full top-40 left-0"></div>
+<div class="max-w-screen-2xl mx-auto px-8 py-12 relative z-10">
+<!-- 1. Business Header -->
+<header class="flex flex-col md:flex-row items-start justify-between gap-8 mb-16">
+<div class="flex gap-8 items-center">
+<div class="w-32 h-32 md:w-40 md:h-40 bg-surface-container-lowest border border-outline-variant/40 rounded-lg flex items-center justify-center p-6 shrink-0">
+<img alt="Company Logo" class="max-w-full h-auto grayscale" data-alt="minimalist architectural firm logo on white background with clean black sans-serif typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAech0pj7sCn2C2OhPPCShzxGlhsMYxi9Eoji0Oj9Qly9x1E75_fm_64l8cUcT3s_hQmApnTH-pVepWlM24em1i0NiSDEgzO9hvrdeRR9yYNiOnMrTy33hMWGK_M6mbLQFd6JNIXY29nf6p-RODSwxXxeRfITIJgOJ5UCzREANRIClJtgMwO4VwI2PCd3tMZmb8oyiyrlXMtf9yjCXOny62AptKY5AaQVByGyhsf6hsFK0Fe7D9kYR07dO-R0fKd2NI_rJLvuqBSVM"/>
+</div>
+<div class="space-y-3">
+<div class="inline-flex items-center gap-2 px-2 py-1 bg-surface-container-highest border border-outline-variant/40 rounded">
+<span class="material-symbols-outlined text-xs">verified</span>
+<span class="text-[0.6875rem] uppercase tracking-widest font-label font-bold">Member Since 2012</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-headline font-extrabold tracking-tighter text-on-surface">Vanguard Architects &amp; Partners</h1>
+<p class="text-on-surface-variant font-medium text-lg max-w-2xl">Sustainable urban planning and high-performance commercial architecture in the Metropolitan Area.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 pt-4 shrink-0">
+<button class="px-8 py-3 bg-primary text-on-primary font-bold tracking-tight rounded hover:opacity-90 transition-all flex items-center gap-2">
+                        Contact Business
+                        <span class="material-symbols-outlined">mail</span>
+</button>
+<button class="px-6 py-3 border border-outline text-primary font-bold tracking-tight rounded hover:bg-surface-container transition-all flex items-center gap-2">
+                        Share
+                        <span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Main Content Column -->
+<div class="lg:col-span-8 space-y-20">
+<!-- 3. Image Gallery -->
+<section>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-[500px]">
+<div class="md:col-span-3 h-full rounded-lg overflow-hidden border border-outline-variant/40 relative">
+<img alt="Main Business Office" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="modern skyscraper facade with glass and steel reflecting clear sky in a monochromatic architectural photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXhzNJNHFBkM35XuMsyJ9H9Xq7FjjyWjg2ppJ2i-VX7-TeAxWeaYItzGVwOiTBsozcEhJnloQ3EhVKe1FqEaHav8ObS6hgqstROWk47BpFrTw9KZTuZ2PXBlouo62rBzDsmVsioJPtqpCSY3tBDh-hd_aPO3BU7cfZOS6v1Mhs0R1MbgYEBIWWEq3Ie9JP3rYzF-YQmCNCikpwxGwWzkTK4ry8t80cTUz6Sq958d-YWZycD8lLDbCNn7jTvDf5MUshHtQ-MDemegc"/>
+</div>
+<div class="hidden md:flex flex-col gap-4 h-full">
+<div class="h-1/3 rounded-lg overflow-hidden border border-outline-variant/40">
+<img alt="Interior View" class="w-full h-full object-cover grayscale" data-alt="minimalist modern office interior with large windows and wooden desk in soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB35Q2ckHGV9nwTMAKZIFCuvm0x1lAKdw0gJf4Wjy0Otyhzx30Acgu9Py0K15dvhDeNB3RYkZe5GMILlQhTzGWfD1YwJxq6n1hxSx4beQK4N2lnslzqebhO5sLGaZVJ-9XoNIeDpai6v6Y5tN215UssFn9OV5P-Umrku9jxJAZBZ3vb9PrqEBjFnKnb-5c4K65a52Z3tFEwFc_2H2HFpq2DsLsUWgqeVTtEjtA-zwTLHCmIdQ6NOS48966OaWuwKOJ5zr2V30Cp1g"/>
+</div>
+<div class="h-1/3 rounded-lg overflow-hidden border border-outline-variant/40">
+<img alt="Design Studio" class="w-full h-full object-cover grayscale" data-alt="architectural drawing on a drafting table with professional tools and blueprints in a sunlit studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABZEW5NDbftElb37sPdk6ZYkHpyPHiV5j0jvClC0R2MkOe2Qm1m5oGjMqcLH0RHzRogn2M7vutmH8JnRUDftYgnaBVqSLZjtzBMiqqVB280Rz_CZkJp30UEEhw6jkoyf9Zqc4vFbOKbODK0iyIROVhzD_yPSXhSw_MBi_94bD3fvGoh2gKx2W6-1MJdwrfTjws2xR7vAUExU7NRujT-K5KlnoXfNPsYv_qO-1G4f_6OmQmBjRrneH5HTjrPvsPuYlEO-mwAE-hJIk"/>
+</div>
+<div class="h-1/3 rounded-lg overflow-hidden border border-outline-variant/40 relative group">
+<img alt="Meeting Room" class="w-full h-full object-cover grayscale blur-[2px]" data-alt="modern glass walled conference room with designer chairs and soft overhead lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNf6u-uS8qB3FHhB15XWaWucA4iVWJL-OPCLrTIXib0zILTj2OXNR5Xi2VLs7XsX30XyBUtKTel9ttwNR8GkRXZlFqxFseEd-5W2xmXF2pL15Bqdx9mFNsGECygWYCr_fIVT8tC0tM6jXDnLtUsto9U6T-D99AEBx_eQ6na1q8_79bx3jFb01PUPWaNVoPPV4sMov3QY_2h4WABptyCN0rRymsS6mU0WySufMiHQxBZsRpel6AM-HRScZ3YTzP62PfoZcZmvay6kE"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold cursor-pointer hover:bg-black/50 transition-all">
+                                        +12 PHOTOS
+                                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Business Description -->
+<section class="max-w-3xl">
+<h2 class="text-[0.6875rem] uppercase tracking-[0.2em] font-label font-extrabold text-outline mb-6">Perspective / About the Firm</h2>
+<div class="space-y-6 text-on-surface leading-relaxed text-lg">
+<p>Founded on the principles of structural honesty and environmental stewardship, Vanguard Architects &amp; Partners has been at the forefront of the city's architectural evolution for over a decade. We believe that every project is a dialogue between the built environment and the community it serves.</p>
+<p>Our multidisciplinary team of designers, engineers, and sustainability experts works collaboratively to deliver solutions that are as functional as they are aesthetically profound. From boutique residential developments to large-scale civic infrastructure, our portfolio reflects a commitment to quality that transcends trends.</p>
+<p>We leverage cutting-edge BIM technology and sustainable material sourcing to ensure that our blueprints translate into resilient, high-performance structures that stand the test of time and climate.</p>
+</div>
+</section>
+<!-- 5. Services/Specialties Grid -->
+<section>
+<h2 class="text-[0.6875rem] uppercase tracking-[0.2em] font-label font-extrabold text-outline mb-8">Capabilities / Expertise</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-outline-variant/40 border border-outline-variant/40">
+<div class="bg-surface p-8 space-y-4 hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">architecture</span>
+<h3 class="font-bold text-xl">Urban Planning</h3>
+<p class="text-on-surface-variant text-sm">Comprehensive site analysis and master planning for high-density metropolitan developments.</p>
+</div>
+<div class="bg-surface p-8 space-y-4 hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">eco</span>
+<h3 class="font-bold text-xl">LEED Consulting</h3>
+<p class="text-on-surface-variant text-sm">Dedicated sustainability strategies to achieve highest-tier green building certifications.</p>
+</div>
+<div class="bg-surface p-8 space-y-4 hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">apartment</span>
+<h3 class="font-bold text-xl">Commercial Design</h3>
+<p class="text-on-surface-variant text-sm">Innovative retail and corporate environments designed for productivity and brand identity.</p>
+</div>
+<div class="bg-surface p-8 space-y-4 hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">foundation</span>
+<h3 class="font-bold text-xl">Interior Architecture</h3>
+<p class="text-on-surface-variant text-sm">Seamless integration of structural elements with human-centric interior spatial design.</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Column -->
+<aside class="lg:col-span-4 space-y-8">
+<!-- 2. Contact & Info Sidebar -->
+<div class="bg-surface-container-low border border-outline-variant/40 p-8 rounded-lg space-y-8 sticky top-28">
+<div>
+<h2 class="text-[0.6875rem] uppercase tracking-[0.2em] font-label font-extrabold text-outline mb-6">Contact / Details</h2>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">language</span>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-widest font-label font-bold text-outline">Website</p>
+<a class="text-primary font-bold hover:underline decoration-1 underline-offset-4" href="#">vanguard-arch.com</a>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">call</span>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-widest font-label font-bold text-outline">Phone</p>
+<span class="text-on-surface font-bold">(555) 123-9870</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<div>
+<p class="text-[0.6875rem] uppercase tracking-widest font-label font-bold text-outline">Location</p>
+<span class="text-on-surface font-bold">1200 Blueprint Way, Suite 400<br/>Metropolis, NY 10012</span>
+</div>
+</li>
+</ul>
+</div>
+<div class="pt-8 border-t border-outline-variant/40">
+<h2 class="text-[0.6875rem] uppercase tracking-[0.2em] font-label font-extrabold text-outline mb-6">Connect / Network</h2>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a>
+<a class="w-10 h-10 rounded border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="w-10 h-10 rounded border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"></path></svg>
+</a>
+</div>
+</div>
+<!-- 6. Location/Map -->
+<div class="pt-8 border-t border-outline-variant/40">
+<h2 class="text-[0.6875rem] uppercase tracking-[0.2em] font-label font-extrabold text-outline mb-4">Geo / Location</h2>
+<div class="w-full h-48 bg-surface-container rounded-lg border border-outline-variant/40 overflow-hidden relative">
+<img alt="Map View" class="w-full h-full object-cover grayscale opacity-50" data-location="Metropolis, NY" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaJ-T6eol0JsQFzC3jL9SEQ6tVDEOjC5c1otUYK_QR58XaZCfYBoY-dZ6rcndzlwBf9smWMY-PTuUUYvHTem0VEuRKsEnw0Ep_srZ-LS6LElmll4MwgIXTdx9rpsJYmZVqq5-GgnJE9Ywlo0ZmvgjK9n9NAJ2ZM_rrjszy1ix2kcF-gyRjGEADooZBiHozPpW8u4mKlV9Z49wnd7TuDQMRpmYAGL3sj5pnoLCRmPIptBEFGpYPyBfozyabOyl8-hX6wWrGkVYcV9c"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-on-primary shadow-lg border-4 border-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+<div class="absolute bottom-2 right-2 bg-surface px-2 py-1 text-[10px] border border-outline-variant uppercase font-bold tracking-tighter">
+                                    Interactive View
+                                </div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- 7. Member Network Section -->
+<section class="mt-32 pt-16 border-t border-outline-variant/40">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-2">
+<h2 class="text-[0.6875rem] uppercase tracking-[0.2em] font-label font-extrabold text-outline">Network / Recommendations</h2>
+<h3 class="text-3xl font-headline font-bold tracking-tight">Other Local Professional Members</h3>
+</div>
+<a class="text-sm font-bold border-b-2 border-primary pb-1 hover:text-outline transition-colors" href="#">View Directory</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Recommended Item 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[16/10] bg-surface-container rounded-lg mb-6 overflow-hidden border border-outline-variant/40">
+<img alt="Recommended Business" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="ultra-modern glass co-working space interior with lush green plants and minimalist furniture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2hPYP0hRqvH62jcnVhdNH0TW0LGOlXE34opQGJGxq4EjPWJcSc9GumB0ibQP78LgodB6RnbnA0KaWqd5hF-Yp_mwknYl9fh1j2cRgyYVu1fzGoxZKKZI_thOovekBDxn0hiHkXOGhKDG_UFUpK-og9p0bRED_zsUBU07N_sYWroUfiBjarVqkTpxbc8jG46pWsp463ZRvm_3nd9KN6eYkPy8QsIArWi_XDBT8be85h_iZ2MRQ5LKQUgoVG7tPctcKypbj688O_xI"/>
+</div>
+<p class="text-[0.6875rem] uppercase tracking-widest font-label font-bold text-outline mb-2">Workspace &amp; Logistics</p>
+<h4 class="text-xl font-bold group-hover:underline decoration-2 underline-offset-4">Metropolis Core Lab</h4>
+<p class="text-on-surface-variant text-sm mt-2 line-clamp-2">Providing premium flexible office solutions and technological infrastructure for creative startups.</p>
+</div>
+<!-- Recommended Item 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[16/10] bg-surface-container rounded-lg mb-6 overflow-hidden border border-outline-variant/40">
+<img alt="Recommended Business" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="exterior of a modern glass skyscraper reflecting the evening city lights in high-contrast monochrome" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNg-BszQv1BexsyBOelEr2rsiQrBegyX_mxI5vHL_yMgByKhSmC-sB9zWp3yikpFzZzYjebSYSSBApe8_mwyXrwcQUpYInDKBHgPq2T5r9RKUiKyO1vAWlMwiRSNoQAfqgJjqVEm1S9TgtvsRn-S2l0gip2WxIZJMfMsoW_Eyhv4-1O3AX9Vw1ro9FQzxh03dUIIORtipuFWStpjO4jnE3syQ9_k_PjCjzTjGHaoj5aZpzOjuWzA9Gp4FtSdfz7i-nAPwTNNyhf5Q"/>
+</div>
+<p class="text-[0.6875rem] uppercase tracking-widest font-label font-bold text-outline mb-2">Legal / Corporate</p>
+<h4 class="text-xl font-bold group-hover:underline decoration-2 underline-offset-4">Sterling &amp; Finch LLP</h4>
+<p class="text-on-surface-variant text-sm mt-2 line-clamp-2">Specializing in commercial law, intellectual property, and real estate development strategy.</p>
+</div>
+<!-- Recommended Item 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[16/10] bg-surface-container rounded-lg mb-6 overflow-hidden border border-outline-variant/40">
+<img alt="Recommended Business" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="chic minimalist retail store interior with white walls and curated designer products on display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1GUpIuA5eDcpfvc3iki2NqQtXM3LrPFYm1NgsNNmlDxb16eY5ZL-uBULcBDNeHnfed8B8Bg_vSKPDuLxRDUuPRpoNCVywvO6YzZCjJ9RyyYctBpdG_gMt24qKIBRSwXkjtWQ173O2NhAEr0qUABuvNr1bgG26e0YW5tWL7invlyi_flKQ6o4152oILPbAKyYkpDhG26WP1q27NwhYuhE-RxoPYFvHmZF_gYFMxtetpFszcbzqcEPZHaQfm52dbNyp6Ko_RNUOmDI"/>
+</div>
+<p class="text-[0.6875rem] uppercase tracking-widest font-label font-bold text-outline mb-2">Retail / Lifestyle</p>
+<h4 class="text-xl font-bold group-hover:underline decoration-2 underline-offset-4">Apex Concept Store</h4>
+<p class="text-on-surface-variant text-sm mt-2 line-clamp-2">Curated luxury retail experience featuring high-end architectural products and bespoke furniture.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-neutral-100 dark:bg-neutral-950 w-full border-t border-neutral-200 dark:border-neutral-800">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 w-full max-w-screen-2xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-bold text-neutral-900 dark:text-neutral-100 text-lg uppercase tracking-tighter">Metropolitan Chamber</span>
+<p class="font-['Inter'] text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400">© 2024 Metropolitan Chamber of Commerce. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="#">Contact Support</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-neutral-500 dark:text-neutral-400 hover:underline decoration-1 underline-offset-4 transition-all duration-200" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+</body></html>
